@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   pako:
-    specifier: ^1.0.11
-    version: 1.0.11
+    specifier: ^2.1.0
+    version: 2.1.0
 
 devDependencies:
   '@rollup/plugin-commonjs':
@@ -311,8 +311,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.5.0
     dev: true
 
-  /pako@1.0.11:
-    resolution: {integrity: sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==}
+  /pako@2.1.0:
+    resolution: {integrity: sha512-w+eufiZ1WuJYgPXbV/PO3NCMEc3xqylkKHzp8bxp1uW4qaSNQUkwmLLEc3kKsfz8lpV1F8Ht3U1Cm+9Srog2ug==}
     dev: false
 
   /path-parse@1.0.7:
