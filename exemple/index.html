@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPNG.js Compression Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input,
+        select,
+        button {
+            margin: 10px 0;
+        }
+
+        #previewImg {
+            max-width: 100%;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>UPNG.js Compression Demo</h1>
+        <input type="file" id="fileInput" accept="image/png" />
+        <p>Select a PNG file to compress</p>
+        <label for="compressionLevel">Compression Level (0-9, 0=no compression, 9=max compression):</label>
+        <select id="compressionLevel">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6" selected>6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+        </select>
+        <br>
+        <button id="compressBtn" disabled>Compress and Preview</button>
+        <p id="result"></p>
+        <img id="previewImg" alt="Compressed PNG Preview" />
+    </div>
+
+    <!-- Load UPNG.js in UMD format -->
+    <script src="../dist/UPNG.umd.js"></script>
+    <script>
+        console.log('UPNG loaded:', typeof UPNG !== 'undefined' ? 'Yes' : 'No');
+
+        const fileInput = document.getElementById('fileInput');
+        const compressBtn = document.getElementById('compressBtn');
+        const compressionLevel = document.getElementById('compressionLevel');
+        const result = document.getElementById('result');
+        const previewImg = document.getElementById('previewImg');
+
+        // Enable compress button after file selection
+        fileInput.addEventListener('change', (event) => {
+            compressBtn.disabled = !event.target.files[0];
+        });
+
+        // Compress button click event
+        compressBtn.addEventListener('click', async () => {
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            try {
+                // Read original file
+                const arrayBuffer = await file.arrayBuffer();
+                const originalSize = arrayBuffer.byteLength;
+
+                // Decode PNG
+                const imgData = UPNG.decode(arrayBuffer);
+                const width = imgData.width;
+                const height = imgData.height;
+                const rgba = UPNG.toRGBA8(imgData)[0];
+
+                // Perform compression
+                const cLevel = parseInt(compressionLevel.value, 10);
+                console.log("🚀 ~ compressBtn.addEventListener ~ cLevel:", cLevel)
+                const compressedArray = UPNG.encode([rgba], width, height, cLevel / 10 * 128);
+                const compressedSize = compressedArray.byteLength;
+
+                // Display compressed image
+                const blob = new Blob([compressedArray], { type: 'image/png' });
+                const url = URL.createObjectURL(blob);
+                previewImg.src = url;
+
+                // Display result
+                result.innerHTML = `
+                Original Size: ${(originalSize / 1024).toFixed(2)} KB<br>
+                Compressed Size: ${(compressedSize / 1024).toFixed(2)} KB<br>
+                Compression Ratio: ${((1 - compressedSize / originalSize) * 100).toFixed(2)}%
+                `;
+
+                // Generate download link
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'compressed.png';
+                link.textContent = 'Download Compressed PNG';
+                result.appendChild(link);
+
+                console.log('Compression completed:', { originalSize, compressedSize });
+            } catch (error) {
+                console.error('Error compressing PNG:', error);
+                result.textContent = 'Compression failed, please check the file format';
+            }
+        });
+    </script>
+</body>
+
+</html>

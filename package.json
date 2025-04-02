@@ -1,7 +1,10 @@
 {
   "name": "upng-js",
   "description": "Small, fast and advanced PNG / APNG encoder and decoder",
-  "version": "2.2.0",
+  "version": "2.2.1",
+  "main": "dist/UPNG.cjs.js",
+  "module": "dist/UPNG.esm.js",
+  "browser": "dist/UPNG.umd.js",
   "homepage": "https://github.com/photopea/UPNG.js",
   "author": "photopea (https://github.com/photopea)",
   "contributors": [
@@ -12,7 +15,6 @@
   "bugs": {
     "url": "https://github.com/photopea/UPNG.js/issues"
   },
-  "main": "UPNG",
   "keywords": [
     "png",
     "apng",
@@ -20,6 +22,21 @@
     "conversion"
   ],
   "dependencies": {
-    "pako": "^1.0.5"
-  }
+    "pako": "^1.0.11"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "rollup": "^4.38.0"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "node test/test.js",
+    "pretest": "npm run build"
+  },
+  "files": [
+    "dist"
+  ]
 }
