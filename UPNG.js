@@ -1,4 +1,4 @@
-import { deflate } from 'pako';
+import { deflate } from 'pako/lib/deflate.js';
 var pako = { deflate };
 
 var UPNG = (function() {

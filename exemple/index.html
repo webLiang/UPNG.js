@@ -94,7 +94,7 @@
                 // Perform compression
                 const cLevel = parseInt(compressionLevel.value, 10);
                 console.log("🚀 ~ compressBtn.addEventListener ~ cLevel:", cLevel)
-                const compressedArray = UPNG.encode([rgba], width, height, cLevel / 10 * 128);
+                const compressedArray = UPNG.encode([rgba], width, height, cLevel / 10 * 256);
                 const compressedSize = compressedArray.byteLength;
 
                 // Display compressed image

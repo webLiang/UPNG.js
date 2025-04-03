@@ -8,6 +8,8 @@ A small, fast and advanced PNG / APNG encoder and decoder. It is the main PNG en
 
 Download and include the `UPNG.js` file in your code.
 
+import UPNG from "@upng/upng-js";
+
 ## Encoder
 
 UPNG.js supports APNG and the interface expects "frames". Regular PNG is just a single-frame animation (single-item array).
