@@ -1,5 +1,35 @@
 # UPNG.js
-A small, fast and advanced PNG / APNG encoder and decoder. It is the main PNG engine for [Photopea image editor](https://www.photopea.com).
+A small, fast and advanced PNG / APNG encoder and decoder. It is the main PNG engine for [Photopea image editor](https://www.photopea.com).、
+
+This project is a fork of UPNG.js . The maintainer of the original repo does not publish it to NPM. 
+**Supports multiple output js formats**
+"main": "dist/UPNG.cjs.js"
+"module": "dist/UPNG.esm.js" 
+"browser": "dist/UPNG.umd.js"
+**and upgrades "pako": "^2.1.0" and simplifies reference on demand.**
+import { deflate } from 'pako/lib/deflate.js';
+
+**To install the latest stable version:**
+# With npm
+npm install --save @upng/upng-js
+
+# With yarn
+yarn add @upng/upng-js
+
+UMD Module
+You can also download @upng/upng-js as a UMD module from unpkg. The UMD builds have been compiled to ES5, so they should work in any modern browser. UMD builds are useful if you aren't using a package manager or module bundler. For example, you can use them directly in the <script> tag of an HTML page.
+
+The following builds are available:
+
+https://unpkg.com/@upng/upng-js/dist/UPNG.umd.js
+When using a UMD build, you will have access to a global window.UPNG variable. This variable contains the UPNG class exported by @upng/upng-js. For example:
+
+// NPM module
+import UPNG from '@upng/upng-js';
+const pngImage = UPNG.decode(/* ... */)
+
+// UMD module
+var pngImage = window.UPNG.decode(/* ... */)
 
 * [Examples of PNGs minified by UPNG.js](https://blog.photopea.com/png-minifier-inside-photopea.html#examples)
 * [Try UPNG.js in Photopea](https://www.photopea.com) - open an image and press File - Save for web, play with the Quality

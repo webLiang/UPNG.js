@@ -1,21 +1,22 @@
 {
   "name": "@upng/upng-js",
   "description": "Small, fast and advanced PNG / APNG encoder and decoder",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "main": "dist/UPNG.cjs.js",
   "module": "dist/UPNG.esm.js",
   "browser": "dist/UPNG.umd.js",
-  "homepage": "https://github.com/photopea/UPNG.js",
-  "author": "photopea (https://github.com/photopea)",
+  "homepage": "https://github.com/webLiang/UPNG.js",
+  "author": "webLiang (https://github.com/webLiang)",
   "contributors": [
+    "photopea (https://github.com/photopea)",
     "Scimonster (https://github.com/Scimonster)"
   ],
   "license": "MIT",
   "repository": {
-    "url": "git+https://github.com/photopea/UPNG.js.git"
+    "url": "git+https://github.com/webLiang/UPNG.js.git"
   },
   "bugs": {
-    "url": "https://github.com/photopea/UPNG.js/issues"
+    "url": "https://github.com/webLiang/UPNG.js/issues"
   },
   "keywords": [
     "png",
@@ -40,6 +41,7 @@
     "pretest": "npm run build"
   },
   "files": [
-    "dist"
+    "dist",
+    "UPNG.js"
   ]
 }
